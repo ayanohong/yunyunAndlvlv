@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云绿GPT</title>
+    <link rel="stylesheet" href="./CSS/ayano.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <h1>云绿GPT</h1>
+            <div class="hamburger">☰</div>
+        </header>
+        
+        <main>
+            <section class="slideshow">
+                <img :src="currentImage" alt="Slideshow Image">
+            </section>
+            
+            <section class="profile">
+                <h2>{{ name }}</h2>
+                <p>{{ bio }}</p>
+            </section>
+            
+            <section class="chat">
+                <div class="chat-messages">
+                    <div v-for="message in messages" :class="['message', message.type]">
+                        {{ message.content }}
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input v-model="userInput" @keyup.enter="sendMessage" placeholder="输入您的问题...">
+                    <button @click="sendMessage">发送</button>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 云绿GPT. 保留所有权利。</p>
+                <div class="social-media">
+                    <a v-for="(account, platform) in socialAccounts" :href="account.url" target="_blank" class="social-icon">
+                        <img :src="account.icon" :alt="platform">
+                        <span>{{ account.id }}</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <a href="#">隐私政策</a> | <a href="#">使用条款</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="./js/ayano.js"></script>
+</body>
+</html>
